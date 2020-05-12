@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
 
-  def attend_to_event_send
-    UserMailer.attend_to_event_email(self).deliver_now
-  end
+  #def attend_to_event_send
+   # UserMailer.attend_to_event_email(self).deliver_now
+  #end
 
   has_many :attendances
   has_many :users, through: :attendances
