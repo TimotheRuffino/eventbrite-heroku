@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @url = 'https://fathomless-shelf-69499.herokuapp.com/'
 
     # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @event.adminu.email, subject: 'Je me suis inscrit à votre évènement !')
+    mail(to: @event.admin.email, subject: 'Je me suis inscrit à votre évènement !')
   end
 
 end
