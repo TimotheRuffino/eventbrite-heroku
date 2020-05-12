@@ -16,11 +16,11 @@ Attendance.destroy_all
 users = []
 events = []
 
-30.times do |i|
+10.times do |i|
     users << User.create!(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        email: Faker::Internet.email,
+        email: "testdefail@yopmail.com",
         description: Faker::Lorem.paragraphs,
         password: "testos"
         
@@ -28,7 +28,7 @@ events = []
     
 end
 
-30.times do |i|
+10.times do |i|
     events << Event.create!(
         start_date: Time.parse("2020-08-12"),
         duration: 5 * rand(1..100),
@@ -41,7 +41,7 @@ end
     
 end
 
-30.times do |i|
+10.times do |i|
     attendance = Attendance.create!(
         user: users.sample,
         event: events.sample
