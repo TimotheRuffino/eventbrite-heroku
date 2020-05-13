@@ -9,7 +9,7 @@
         <div class="container">
           <h1 class="display-3">Bienvenue sur EventBrite</h1>
           <p>Le leader de la création d'évènements</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button"> Créer ton évènement</a></p>
+          <p><a class="btn btn-primary btn-lg" role="button"<%= link_to "Créer un event", new_event_path %></a></p>
         </div>
       </div>
 
@@ -21,11 +21,11 @@
  <h4> Voici la liste des évènements</h4>
 </div>
 
-<div class="row">
+<div class="row justify-content-center ">
   <% @events.each do |event| %>
-    <div class="col-sm-3" style="padding: 20px">
-      <div class="card">
-        <div class="card-header">
+    <div class="col-sm-5" style="padding: 20px">
+      <div class="card border-info mb-3">
+        <div class="card-header border-info mb-3 ">
           <h4><%= event.title %></h4>
         </div>
         <div class="card-body">
