@@ -1,39 +1,73 @@
+<br>
+<div class="row justify-content-center">
+ <h3> Participer à l'event <%= @event.title %> </span></h3>
+</div>
 
-<div class="container">
+<br>
+
+<div class="jumbotron jumbo_img">
+
+  <div class="row justify-content-center">
+    <div class="card" style="width: 30rem;">
+      <div class="card-header text-center">
+      <br>
+      <h2> Vos informations</h2>
+ <div class="container">
   <div class="card border-0 shadow my-5">
-    <div class="card-body p-5">
-    <div class="row justify-content-center">
+   <div class="card-body p-5">
+   
 
-
-
-  <%= form_tag events_path do %>
+ <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
       <div id="error_explanation">
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-    <h2> Page de paiement pour l'évènement : <%= @event.title%></h2>
-    <label class="amount">
-      <span>Prix : <%= @event.price%> €</span>
-    </label>
+
+  
+  <div class="card" style="width: 20rem;">
+  <div class="card-header">
+   ID : <%= current_user.id %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Email : <%= current_user.email %></li>
+    <li class="list-group-item">Prénom : <%= current_user.first_name %> </li>
+    <li class="list-group-item">Nom : <%= current_user.last_name %> </li>
+    
+  </ul>
+</div>
+</div>
+</div>
+
+
+    <div class="row justify-content-center">
+     <label class="amount">
+      <div class="row justify-content-center"><h3>Tarif: <%= @event.price%> $</h3> 
+     </label>
+    </div>
+    <br>
   </article>
 
+  <div class="row justify-content-center">
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
-          data-amount=<%= @event.price%>
+          data-amount= <%= @event.price * 100 %>
           data-locale="auto"></script>
 <% end %>
-
-
+      </div>
+    </div>
+   </div>
   </div>
-  
-</div>
-</div>
-<div class="row justify-content-center"> 
-    <%= link_to "Retour", :back %>
-</div>
-</div>
-</div>
+ </div>
+</div> 
+    </div>
+        </div>
+      </div>
+    </div>
 
+<div class="row justify-content-center">
+  <div class="container-fluid row justify-content-center">
+    <%= link_to "Retour", :back %>
+  </div>

@@ -10,6 +10,7 @@ class AttendancesController < ApplicationController
   end
 
   def new
+    @attendances = Attendance.all
     @event = Event.find(params[:id])
   end
 

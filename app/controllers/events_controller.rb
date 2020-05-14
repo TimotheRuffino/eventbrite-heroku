@@ -13,26 +13,16 @@ class EventsController < ApplicationController
     end 
     
     def create
-        @events = Event.new(event_params)
-        puts @events.title
-        if @events.save
-          flash[:success] = "Your event has been created."
-          redirect_to event_path(@events.id)
-        else
-          messages = []
-          if @events.errors.any? 
-            @events.errors.full_messages.each do |message| 
-              messages << message
-            end 
-            flash[:error] = "You failed, find the following errors :#{messages.join(" ")}"
-            render 'new'
-          end
-        end
-      end
+    @event = Event.new(title: params[:title], location: params[:location], price: params[:price], description: params[:description], start_date: params[:start_date], duration: params[:duration], admin: current_user)
 
-      private
-
-  def event_params
-    params.require(:events).permit(:title, :location, :duration, :description, :price, :start_date, :admin_id)
+    if @event.save
+      flash[:success] = "Event successfully created"
+      redirect_to root_path
+    else
+      flash[:failure] = "Invalid input"
+      render :new
+    end
   end
+
 end
+     
