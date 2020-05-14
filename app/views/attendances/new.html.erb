@@ -17,13 +17,7 @@
    <div class="card-body p-5">
    
 
- <%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
+ 
 
   
   <div class="card" style="width: 20rem;">
@@ -49,6 +43,14 @@
     <br>
   </article>
 
+  <%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+
   <div class="row justify-content-center">
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -66,6 +68,7 @@
         </div>
       </div>
     </div>
+    
 
 <div class="row justify-content-center">
   <div class="container-fluid row justify-content-center">
