@@ -1,37 +1,39 @@
 
-
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
     <div class="row justify-content-center">
 
 
-     
-<%= form_tag events_path do %>
+
+  <%= form_tag events_path do %>
   <article>
     <% if flash[:error].present? %>
       <div id="error_explanation">
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
+    <h2> Page de paiement pour l'évènement : <%= @event.title%></h2>
     <label class="amount">
-      <span>amount></span>
+      <span>Prix : <%= @event.price%> €</span>
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
-          data-amount="500"
+          data-amount=<%= @event.price%>
           data-locale="auto"></script>
 <% end %>
 
 
   </div>
-  <div class="mt-5 container-fluid">
-    <%= link_to "Back", :back %>
-  </div>
+  
+</div>
+</div>
+<div class="row justify-content-center"> 
+    <%= link_to "Retour", :back %>
 </div>
 </div>
 </div>
-</div>
+

@@ -1,42 +1,33 @@
 class AttendancesController < ApplicationController
-  include EventsHelper
+
   def index
-    @attendances = Attendance.all
-end
-
-def new
-  
-  @attendances = Attendance.new
-  @events = Event.all
-  #@attendances = Attendance.find(params[:id])
-  #@event_att = Attendance.find(params[:id]).events
-end
-
-def create
-  @attendances = Attendance.new(attendance_params)
-  
-  if @attendances.save
-    flash[:success] = "Your attendance has been created."
-    redirect_to event_path(@events.id)
-  else
-    messages = []
-    if @attendances.errors.any? 
-      @attendances.errors.full_messages.each do |message| 
-        messages << message
-      end 
-      flash[:error] = "You failed, find the following errors :#{messages.join(" ")}"
-      render 'new'
+    @events = Event.find(params[:id])
+    @attendances = @events.attendances
+    unless current_user == @event.admin
+      flash[:failure] = "Not authorized"
+      redirect_to root_path
     end
   end
-end
 
+  def new
+    @event = Event.find(params[:id])
+  end
+
+  def create
+    @attendances = Attendance.new(user_id: params[:user_id], event_id: params[:event_id], stripe_customer_id: params[:customer_id])
+
+    if @attendances.save
+      flash[:success] = "Event registration successfully saved"
+      redirect_to root_path
+    else
+      flash[:failure] = "Event registration saving failed"
+      redirect_to root_path
+    end
+  end
 private
 
   def attendance_params
-    params.require(:attendances).permit(:event_id, :user_id)
+    params.permit(:event_id, :user_id, :stripe_customer_id)
   end
-
-
-
 
 end

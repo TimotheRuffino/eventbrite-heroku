@@ -23,7 +23,7 @@
     <li class="list-group-item">Description : <%= @events.description%> </li>
     <li class="list-group-item">Prix : <%= @events.price%> €</li>
   
-    <%= link_to "Participer", new_attendance_path , class:"btn btn-outline-dark" %> 
+    <%= link_to "Participer", new_attendance_path(id: @events.id) , class:"btn btn-outline-dark" %> 
      
 
    
