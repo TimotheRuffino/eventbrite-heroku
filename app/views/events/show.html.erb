@@ -22,6 +22,11 @@
     <li class="list-group-item">Date: <%= @events.start_date %> </li>
     <li class="list-group-item">Description : <%= @events.description%> </li>
     <li class="list-group-item">Prix : <%= @events.price%> €</li>
+  
+    <%= link_to "Participer", new_attendance_path , class:"btn btn-outline-dark" %> 
+     
+
+   
   </ul>
 </div>
 </div>

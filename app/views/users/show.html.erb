@@ -18,6 +18,7 @@
     <li class="list-group-item">Prénom : <%= @users.first_name %> </li>
     <li class="list-group-item">Nom : <%= @users.last_name %> </li>
     <li class="list-group-item">Description : <%= @users.description%> </li>
+    <%= link_to "Éditer ton profil", edit_user_path , class:"btn btn-outline-dark" %> 
   </ul>
 </div>
 </div>

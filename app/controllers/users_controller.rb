@@ -7,6 +7,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new 
+    @users = User.new
+  end
+
+  def edit
+    @users = User.find(params[:id])
+  end
+
+
   #def authenticate_user
    # unless current_user
       
@@ -21,6 +30,19 @@ class UsersController < ApplicationController
    # end
   #end
 
+
+  def update
+    @users = User.find(params[:id])
+      if @users.update(user_params)
+        flash[:success] = "Ton profil a été mis-à-jour."
+        redirect_to user_path(@users.id)
+      else
+        render 'edit'
+      end
+    end
+
+
+
   
   def show
     @events_user = User.find(params[:id]).events
@@ -30,5 +52,12 @@ class UsersController < ApplicationController
           redirect_to root_path
         end
 end
+
+private
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :description)
+  end
+
 
 end
