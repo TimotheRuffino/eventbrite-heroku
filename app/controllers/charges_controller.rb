@@ -1,8 +1,10 @@
 class ChargesController < ApplicationController
   def new
+    @event = Event.find(params[:id])
   end
   
   def create
+    @event = Event.find(params[:id])
     # Amount in cents
     @amount = 500
   
@@ -18,6 +20,8 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
   
+    @customer_id = customer.id
+    
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

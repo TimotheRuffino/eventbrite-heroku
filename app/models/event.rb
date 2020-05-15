@@ -7,6 +7,8 @@ class Event < ApplicationRecord
   #def self.event_to_att
   #end
 
+  has_one_attached :avatar
+
   has_many :attendances
   has_many :users, through: :attendances
 

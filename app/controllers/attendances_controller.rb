@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
       flash[:success] = "Event registration successfully saved"
       redirect_to root_path
     else
-      flash[:failure] = "Event registration saving failed"
+      flash[:error] = "Event registration saving failed"
       redirect_to root_path
     end
   end
