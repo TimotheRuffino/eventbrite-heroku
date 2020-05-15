@@ -1,28 +1,53 @@
 class EventsController < ApplicationController
 
-    def index
-        @events = Event.all
-    end 
+def index
+  @events = Event.all
+end 
 
-    def show
-        @events = Event.find(params[:id])
+def show
+  @events = Event.find(params[:id])
+end 
+
+def new
+  @events = Event.new
+end 
+
+def create
+  @events = Event.new(event_params)
+  puts @events.title
+  if @events.save
+    flash[:success] = "Votre évènement vient d'être créé ! "
+    redirect_to event_path(@events.id)
+  else
+    messages = []
+    if @events.errors.any? 
+      @events.errors.full_messages.each do |message| 
+        messages << message
       end 
-
-    def new
-        @events = Event.new
-    end 
-    
-    def create
-    @event = Event.new(title: params[:title], location: params[:location], price: params[:price], description: params[:description], start_date: params[:start_date], duration: params[:duration], admin: current_user)
-
-    if @event.save
-      flash[:success] = "Event successfully created"
-      redirect_to root_path
-    else
-      flash[:failure] = "Invalid input"
-      render :new
+      flash[:error] = "Votre évènement n'a pas pu être créé pour les raisons suivantes : #{messages.join(" ")}"
+      render 'new'
     end
   end
+end
+
+private
+
+def event_update
+  params.require(:events).permit(:title, :location, :duration, :description, :price, :start_date, :admin_id)
+end
+
+def event_params
+params.require(:events).permit(:title, :location, :duration, :description, :price, :start_date, :admin_id)
+end
+
+def update 
+  @events = Event.find(params[:id])
+  if @events.update(event_update)
+    redirect_to event_path
+  else
+    render edit_event_path
+  end
+end
 
 end
      

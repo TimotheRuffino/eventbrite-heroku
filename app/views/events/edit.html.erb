@@ -1,26 +1,19 @@
 <div class="col-md-6 offset-md-3">
 
   <div class="row justify-content-center"> 
-   <h3 class="texte-bienvenue mt-5">Créer un nouvel event bright</h3>
+   <h3 class="texte-bienvenue mt-5">Modifie ton event</h3>
   </div>
-  <br>
-  
-<div class="jumbotron">
-  <div class="row justify-content-center">
-    <div class="card" style="width: 30rem;">
-      <div class="card-header">
 
  <div class="container">
-    <div class="card-body p-1">
-     <div class="row justify-content-center">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+    <div class="row justify-content-center">
 
  
  <div class="container-fluid text-center">
   <div class="container-fluid">
-    <%= form_for(:events,  url:(events_path), action: 'create', method: :post) do |f| %>
-      <div class="field">
-        <%= f.hidden_field :admin_id, :value => current_user.id %>
-      </div><br />
+    <%= form_for(:events,  url:(event_path), action: 'update', method: :patch) do |f| %>
+  
 
       <div class="field">
         <%= f.label "Titre" %><br />
@@ -29,7 +22,7 @@
 
       <div class="field">
         <%= f.label "Description" %> <br />
-        <%= f.text_area :description, placeholder: "20 caractères minimum", autocomplete: :description, class: "form-control" %>
+        <%= f.text_area :description, autocomplete: :description, class: "form-control" %>
       </div><br />
 
       <div class="field">
@@ -44,7 +37,7 @@
       
       <div class="field">
         <%= f.label "Durée en minute"%> <br />
-        <%= f.text_field :duration, placeholder: "doit finir par 0 ou 5", class: "form-control" %>
+        <%= f.text_field :duration, placeholder: "Doit finir par 0 ou 5", class: "form-control" %>
       </div><br />
 
       <div class="field">
@@ -52,25 +45,19 @@
         <%= f.number_field :price, autocomplete: :price, class: "form-control" %>
       </div><br />
 
-<div class="actions">
-          <%= f.submit "Créer mon event !", class:"btn btn-dark btn-sm" %>
+      <div class="actions">
+        <%= f.submit "Modifier ton évènement", class: "btn btn-sm btn-primary" %>
       </div>
-    </div>
-   </div>
- 
+      
+    <% end %>
+  </div>
+  </div>
   
-     </div> 
-    </div>
-   </div>
-  </div>
- </div> 
- </div>
-   </div>
-  </div>
- 
-
-<div class="row justify-content-center"> 
-  <%= link_to "Retour", :back %>
+</div> 
 </div>
-
-<% end %>
+</div>
+<div class="row justify-content-center"> 
+    <%= link_to "Retour", :back %>
+</div>
+</div>
+</div>

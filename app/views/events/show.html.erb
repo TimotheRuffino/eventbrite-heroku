@@ -35,8 +35,9 @@
     <li class="list-group-item">Prix : <%= @events.price%> €</li>
   
     <%= link_to "Participer", new_attendance_path(id: @events.id) , class:"btn btn-outline-dark" %> 
-     
-
+    <% if current_user == @events.admin %>
+     <%= link_to "Editer", edit_event_path(id: @events.id) , class:"btn btn-indo" %> 
+    <% end %>
   </ul>
 </div>
 </div>
