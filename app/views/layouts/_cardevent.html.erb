@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+
+
+<link rel="stylesheet" href="application.css" />
+</head>
+
+<body>
+
+
+
+
+    <div class="container">
+  
+  <div class="card-body p-5">
+    <div class="row justify-content-center">
+      <h4> Voici la liste des évènements</h4>
+
+
+      <div class="row justify-content-center ">
+        <% @events.each do |event| %>
+          <div class="col-sm-5" style="padding: 20px">
+            <div class="card border-primary mb-3">
+              <div class="card-header border-info mb-3 ">
+                <h4><%= event.title %></h4>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Posté par  <%= event.admin.first_name %></h5>
+                <%= link_to "Voir l'évènement", event_path(event.id), class:"btn btn-outline-primary" %>
+              
+
+              </div>
+            </div>
+          </div>
+            <% end %>
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

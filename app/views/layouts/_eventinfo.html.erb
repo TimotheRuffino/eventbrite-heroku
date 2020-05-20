@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="application.css" />
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="shadow-sm p-3 mb-5 border border-primary rounded">
+  <div class="row">
+    <div class="col-8">
+    <div class="avatar" height="150px">
+<div class="row justify-content-center">
+ <%= image_tag @events.avatar, alt: 'avatar' if @events.avatar.attached? %>
+<%= form_tag event_avatars_path(@events.id), multipart: true do %>
+  <%= file_field_tag :avatar %>
+  <%= submit_tag "mettre à jour" %>
+<% end %>
+</div>
+</div>       
+       
+    </div>
+    <div class="col-4"> 
+      
+        
+        <div class="card text-white mb-3">
+          
+        
+          <div class="card-header bg-primary">Informations évènement</div>
+        
+          <a href="#" class="list-group-item list-group-item-action">ID : <%= @events.id %>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Contact : <%= @events.admin.email %> 
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Nom : <%= @events.title %>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Créé par : <%= @events.admin.first_name %> <%= @events.admin.last_name %>
+          </a>
+          
+          
+          <a href="#" class="list-group-item list-group-item-action">Localisation : <%= @events.location %>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Date : <%= @events.start_date %>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Participants : <%= @events.attendances.count%>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Prix : <%= @events.price%> €
+          </a>
+          </div>
+          </div>
+    </div>
+
+    <div class="row justify-content-center ">
+         <%= link_to "Participer", new_attendance_path(id: @events.id) , class:"btn btn-outline-primary" %> 
+    <% if current_user == @events.admin %>
+     <%= link_to "Editer", edit_event_path(id: @events.id) , class:"btn btn-indo" %> 
+    <% end %>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-8">
+        <div class="list-group">
+          <a href="#" class=" list-group-item-action flex-column align-items-start text-primary">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Description</h5>
+              
+            </div>
+            <p class="mb-1"><%= @events.description%></p>
+            
+          </a>
+        </div>
+      </div>
+
+
+      <div class="col-4">
+        <div class="card text-white mb-3">
+              
+            
+          <div class="card-header bg-primary">Informations complémentaires</div>
+        
+          <a href="#" class="list-group-item list-group-item-action">Heure :
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Tenue : Décontracté
+          </a>
+          </div>
+        </div>
+    
+
+    </div>
+
+    
+
+    <div class="row justify-content-center">
+      <div class="logo">
+      <i class="fab fa-facebook-square"></i>
+      <i class="fab fa-twitter-square"></i>
+      <i class="fab fa-whatsapp-square"></i>
+
+</div>
+    </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>  

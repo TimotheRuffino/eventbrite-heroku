@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+<link rel="stylesheet" href="application.css" />
+</head>
+<body>
+
+  <div class="jumbotron">
+    <h1 class="display-3">Bienvenue sur EventBrite !</h1>
+    <p class="lead">Le leader de la création d'évènement</p>
+    <hr class="my-4">
+    <p>Prêt à te lancer ?</p>
+     <% if current_user %>    
+          <p><a class="btn btn-primary btn-lg" role="button"<%= link_to "Créer un event", new_event_path %></a></p>
+           <% else %>
+           <p><a class="btn btn-primary btn-lg" role="button"<%= link_to "Créer un event", new_user_session_path %></a></p>
+         <% end %>
+  </div>
+
+
+</body>
+</html>  

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<link rel="stylesheet" href="application.css" />
+</head>
+<body>
+
+  
+
+<div class="row justify-content-center">
+ 
+<div class="card text-white mb-3" style="max-width: 20rem;">
+  <img class="card-img-top" src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
+
+  <div class="card-header bg-primary">Mon profil</div>
+
+  <a href="#" class="list-group-item list-group-item-action">ID : <%= @users.id %>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">Email : <%= @users.email %>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">Prénom : <%= @users.first_name %>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">Nom :  <%= @users.last_name %>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">Description : <%= @users.description%>
+  </a>
+   <%= link_to "Éditer ton profil", edit_user_path , class:"btn btn-outline-dark" %> 
+  </div>
+ 
+</div>
+</div>
+
+
+</body>
+</html>
